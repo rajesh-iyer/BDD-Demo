@@ -6,8 +6,11 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(strict = false, features = "src/test/resources/features", plugin = {"pretty",
-    "json:target/cucumber.json"}, tags = {"~@ignore"}, glue = "com.xpanxion.bdd.tests")
+@CucumberOptions(strict = false, 
+        features = "src/test/resources/features", 
+        plugin = {"pretty","json:target/cucumber.json"}, 
+        tags = {"@Addition"}, 
+        glue = "com.xpanxion.bdd.tests")
 public class RunBDDTest {
 
 }

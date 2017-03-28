@@ -1,10 +1,11 @@
 package com.xpanxion.bdd.demo;
 
-public class Subtract implements IResult{
+public class Subtract implements IResult {
 
     @Override
     public int getResult(Object a, Object b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Integer a1 = Integer.valueOf((String) a);
+        Integer b1 = Integer.valueOf((String) b);
+        return a1 - b1;
     }
-    
 }

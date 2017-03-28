@@ -1,4 +1,8 @@
 Feature: Addition of numbers
+
+    @Smoke
+    @Regression
+    @Addition
     Scenario Outline: Positive Scenarios for adding two numbers
         Given I am on the Addition page
         When I add the numbers "<number1>" and "<number2>"
