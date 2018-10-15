@@ -2,6 +2,8 @@ package com.xpanxion.bdd.tests;
 
 import com.xpanxion.bdd.demo.Addition;
 import com.xpanxion.bdd.demo.Subtract;
+import com.xpanxion.bdd.demo.pages.HomePage;
+import com.xpanxion.bdd.demo.pages.OurWorkPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -12,6 +14,8 @@ public class StepDefs {
     Addition addition = null;
     Subtract subtract = null;
     int result = 0;
+    HomePage homePage;
+    OurWorkPage ourWorkPage;
 
     @Given("^I am on the Addition page$")
     public void i_am_on_the_Addition_page() throws Throwable {
@@ -41,5 +45,23 @@ public class StepDefs {
     @When("^I subtract \"([^\"]*)\" from \"([^\"]*)\"$")
     public void i_subtract_from(String arg1, String arg2) throws Throwable {
         result = subtract.getResult(arg2, arg1);
+    }
+
+    @Given("^the user on Xpanxion HomePage$")
+    public void the_user_on_Xpanxion_HomePage() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        homePage = new HomePage();
+        Assert.assertTrue("Xpanxion Home Page is not loaded", homePage.isHomePageDisplayed());
+    }
+
+    @When("^the user navigates to Our Work Page$")
+    public void the_user_navigates_to_Our_Work_Page() throws Throwable {
+        ourWorkPage = homePage.clickOurWorkLink();
+    }
+
+    @Then("^the user should be able to view the heading \"([^\"]*)\"$")
+    public void the_user_should_be_able_to_view_the_heading(String headerText) throws Throwable {
+        Assert.assertTrue("Our Work Page is not loaded", ourWorkPage.isSubHeadingPresent());
+        Assert.assertEquals("The heading value is incorrect", headerText, ourWorkPage.getSubHeading());
     }
 }
